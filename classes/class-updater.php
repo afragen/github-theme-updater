@@ -115,13 +115,14 @@ class GitHub_Theme_Updater {
 			$update['package']         = $download_link;
 
 			if( !is_null($theme_data['theme-data']->Version) )
-				if( version_compare( intval($theme_data['theme_data']->Version),  intval($newest_tag), '>=' ) ) {
+				if( version_compare( $theme_data['theme-data']->Version,  $newest_tag, '>=' ) ) {
 					// up-to-date!
 					$data->up_to_date[$theme_data['theme_key']]['rollback'] = $tags;
 					$data->up_to_date[$theme_data['theme_key']]['response'] = $update;
 				} else {
 					$data->response[$theme_data['theme_key']] = $update;
 				}
+
 		}
 
 		return $data;
@@ -133,8 +134,6 @@ class GitHub_Theme_Updater {
  	*	must rename this zip file to the accurate theme folder
  	*/
 	public function gtu_upgrader_source_selection_filter( $source, $remote_source=NULL, $upgrader=NULL ) {
-		//var_dump($source);
-		//var_dump($remote_source);
 		
 		if( isset( $source ) )
 			for ($i = 0; $i < count($this->config['theme']); $i++) {
