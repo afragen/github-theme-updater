@@ -115,12 +115,11 @@ class GitHub_Theme_Updater {
 			$update['package']         = $download_link;
 
 			if( !is_null($theme_data['theme-data']->Version) )
-				if( version_compare( $theme_data['theme_data']->Version,  $newest_tag, '>=' ) ) {
+				if( version_compare( intval($theme_data['theme_data']->Version),  intval($newest_tag), '>=' ) ) {
 					// up-to-date!
 					$data->up_to_date[$theme_data['theme_key']]['rollback'] = $tags;
 					$data->up_to_date[$theme_data['theme_key']]['response'] = $update;
 				} else {
-					//echo 'not up-to-date';
 					$data->response[$theme_data['theme_key']] = $update;
 				}
 		}
