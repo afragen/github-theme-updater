@@ -2,7 +2,7 @@
 
 This is a simple WordPress plugin to update any themes that are kept on GitHub.
 
-There must be a `GitHub Theme URI` declaration in the `style.css` file.
+There must be a `GitHub Theme URI` declaration in the `style.css` file and you must create a tag in GitHub for each version.
 
 
     /*
