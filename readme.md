@@ -21,7 +21,6 @@ This plugin was originally based upon https://github.com/WordPress-Phoenix/white
 ### To Do
 
 * There is no rollback feature.
-* The `assets.php` file is not used.
 
 I use https://github.com/codepress/github-plugin-updater to keep my non-WordPress repo, GitHub located plugins updated.
 

@@ -8,11 +8,15 @@ Version: 0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Adding registration and custom user meta to site. 
+Simple plugin to automatically update any theme stored on GitHub.
 
 == Description ==
 
-This plugin adds registration, custom user meta, role and custom user meta specific menu options and other things for Medical Staff governance to the [DRMC Medical Staff website](http://drmcmedstaff.org). Combined with other plugins, listed below, and a theme containing 2 additional page templates; the website is capable of providing web-based voting for all Medical Staff and Departmental functions.
+This plugin was designed to simply update any GitHub stored WordPress theme. Your theme **must** contain a header in the style.css header denoting the theme's location on GitHub. The format is as follows.
+
+GitHub Theme URI: https://github.com/afragen/github-theme-updater 
+
+Where the above URL leads to the repository of your theme.
 
 == Installation ==
 
@@ -26,6 +30,9 @@ This section describes how to install the plugin and get it working.
 
 == Changelog ==
 
+= 0.2 =
+* code cleanup
+* limit `file_get_contents` to 2K bytes
 
 = 0.1 =
 * Initial commit
