@@ -5,12 +5,11 @@ Requires at least: 3.4
 Tested up to: 3.5.2
 Git URI: https://github.com/afragen/github-theme-updater
 Stable tag: master
-Version: 0.2
-
+Version: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Simple plugin to automatically update any theme stored on GitHub.
+A simple plugin to enable automatic updates to your GitHub hosted themes.
 
 == Description ==
 
@@ -49,6 +48,9 @@ This plugin was originally based upon <a href="https://github.com/WordPress-Phoe
 Please log issues either here or preferably on the GitHub at https://github.com/afragen/github-theme-updater/issues
 
 == Changelog ==
+
+= 1.0 =
+* initial commit to WordPress repo
 
 = 0.2 =
 * code cleanup

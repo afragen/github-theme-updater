@@ -5,7 +5,7 @@ Plugin URI: https://github.com/afragen/github-theme-updater/
 Original Plugin Name: Theme Updater
 Original Plugin URI: https://github.com/UCF/Theme-Updater
 Description: Theme updater plugin to pull updates of the GitHub based themes into wordpress. Based upon <a href="https://github.com/WordPress-Phoenix/whitelabel-framework">Whitelabel Framework</a> modifications.
-Version: 0.2
+Version: 1.0
 Author: Andy Fragen
 License: GNU General Public License v2
 License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
