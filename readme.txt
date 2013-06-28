@@ -16,7 +16,7 @@ Simple plugin to automatically update any theme stored on GitHub.
 
 This plugin was designed to simply update any GitHub stored WordPress theme. Your theme **must** contain a header in the style.css header denoting the theme's location on GitHub. The format is as follows.
 
-GitHub Theme URI: https://github.com/afragen/github-theme-updater 
+`GitHub Theme URI: https://github.com/afragen/test-child` 
 
 Where the above URL leads to the repository of your theme.
 
@@ -34,7 +34,7 @@ There must be a `GitHub Theme URI` declaration in the `style.css` file and you m
     /*
     Theme Name: Test
     Theme URI: http://drfragen.info/
-    Github Theme URI: https://github.com/afragen/test-child
+    GitHub Theme URI: https://github.com/afragen/test-child
     Description: Child-Theme of TwentyTwelve.
     Author: Andy Fragen
     Template: twentytwelve
@@ -42,7 +42,7 @@ There must be a `GitHub Theme URI` declaration in the `style.css` file and you m
     Version: 0.1
     */
 
-This plugin was originally based upon https://github.com/WordPress-Phoenix/whitelabel-framework/blob/master/inc/updater-plugin.php, which was based upon https://github.com/UCF/Theme-Updater.
+This plugin was originally based upon <a href="https://github.com/WordPress-Phoenix/whitelabel-framework/blob/master/inc/updater-plugin.php">Whitelabel Framework's updater-plugin.php</a>, which was based upon https://github.com/UCF/Theme-Updater.
 
 == Issues ==
 

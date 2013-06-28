@@ -8,7 +8,7 @@ There must be a `GitHub Theme URI` declaration in the `style.css` file and you m
     /*
     Theme Name: Test
     Theme URI: http://drfragen.info/
-    Github Theme URI: https://github.com/afragen/test-child
+    GitHub Theme URI: https://github.com/afragen/test-child
     Description: Child-Theme of TwentyTwelve.
     Author: Andy Fragen
     Template: twentytwelve
