@@ -1,9 +1,11 @@
 === GitHub Theme Updater ===
 Contributors: afragen
+Tags: theme, update, github
 Requires at least: 3.4
 Tested up to: 3.5.2
 Git URI: https://github.com/afragen/github-theme-updater
-Version: 0.1
+Stable tag: master
+Version: 0.2
 
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -27,6 +29,24 @@ This section describes how to install the plugin and get it working.
 
 == Frequently Asked Questions ==
 
+There must be a `GitHub Theme URI` declaration in the `style.css` file and you must create a tag in GitHub for each version.
+
+    /*
+    Theme Name: Test
+    Theme URI: http://drfragen.info/
+    Github Theme URI: https://github.com/afragen/test-child
+    Description: Child-Theme of TwentyTwelve.
+    Author: Andy Fragen
+    Template: twentytwelve
+    Template Version: 1.0
+    Version: 0.1
+    */
+
+This plugin was originally based upon https://github.com/WordPress-Phoenix/whitelabel-framework/blob/master/inc/updater-plugin.php, which was based upon https://github.com/UCF/Theme-Updater.
+
+== Issues ==
+
+Please log issues either here or preferably on the GitHub at https://github.com/afragen/github-theme-updater/issues
 
 == Changelog ==
 
