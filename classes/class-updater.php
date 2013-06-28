@@ -14,18 +14,24 @@ class GitHub_Theme_Updater {
 	protected function __construct() {
 		$this->gtu_get_github_themes();
 		if( !empty($_GET['action'] ) && ( $_GET['action'] == 'do-core-reinstall' || $_GET['action'] == 'do-core-upgrade') ); else {
-			//if( !function_exists( 'github_theme_update_row') ) require_once( 'assets.php' );
 			add_filter( 'site_transient_update_themes', array( $this, 'gtu_transient_update_themes_filter') );
 		}
 		add_filter( 'upgrader_source_selection', array( $this, 'gtu_upgrader_source_selection_filter' ), 10, 3 );
 		add_action( 'http_request_args', array( $this, 'gtu_no_ssl_http_request_args' ), 10, 2 );
 	}
 
+	/**
+	 * Reads in first 2K of every theme's style.css to get version info.
+	 * Populates variable array
+	 *
+	 * @since 1.0
+	 */
+	
 	private function gtu_get_github_themes() {
 		$themes = wp_get_themes();
 
 		foreach ( $themes as $theme ) {
-			$stylesheet = file_get_contents( trailingslashit( $theme->theme_root ) . trailingslashit( $theme->stylesheet ) . 'style.css' );
+			$stylesheet = file_get_contents( trailingslashit( $theme->theme_root ) . trailingslashit( $theme->stylesheet ) . 'style.css', null, null, 0, 2*1024 );
 			preg_match( '#\s*Git[Hh]ub Theme URI\:\s*(.*)$#im', $stylesheet, $matches );
 			if ( ! empty( $matches ) ) {
 				$this->config['theme'][]											= $theme->stylesheet;
@@ -74,17 +80,16 @@ class GitHub_Theme_Updater {
 		return $remote;
 	}
 
+	/**
+	 * Finds newest tag and compares to current tag
+	 *
+	 * @since 1.0
+	 * @param array $data
+	 * @return array|object
+	 */
 	public function gtu_transient_update_themes_filter($data){
-
 		foreach ( $this->config as $theme => $theme_data ) {
-
-			// Add Github Theme Updater to return $data and hook into admin
-//			remove_action( "after_theme_row_" . $theme_data['theme_key'], 'wp_theme_update_row');
-//			add_action( "after_theme_row_" . $theme_data['theme_key'], 'github_theme_update_row', 11, 2 );
-
 			$url = trailingslashit( $theme_data['GitHub_API_URI'] ) . 'tags';
-
-
 			$response = $this->get_remote_info( $url );
 
 			// Sort and get latest tag
@@ -97,15 +102,6 @@ class GitHub_Theme_Updater {
 
 			// check and generate download link
 			$newest_tag = end( array_values( $tags ) );
-
-			// check for rollback
-// 			if( isset( $_GET['rollback'] ) ) {
-// 				$data->response[$theme_data['theme_key']]['package'] = trailingslashit( $theme_data['GitHub_Theme_URI'] ) . trailingslashit( 'archive' ) . urlencode($_GET['rollback'] . '.zip' );
-// 				$download_link = $data->response[$theme_data['theme_key']]['package'];
-// 			} else {
-// 				$download_link = trailingslashit( $theme_data['GitHub_Theme_URI'] ) . trailingslashit( 'archive' ) . $newest_tag . '.zip';
-// 			}
-
 			$download_link = trailingslashit( $theme_data['GitHub_Theme_URI'] ) . trailingslashit( 'archive' ) . $newest_tag . '.zip';
 			
 			// setup update array to append version info
@@ -122,21 +118,21 @@ class GitHub_Theme_Updater {
 				} else {
 					$data->response[$theme_data['theme_key']] = $update;
 				}
-
 		}
-
 		return $data;
-
 	}
 
-
-	/*	Github delivers zip files as <Username>-<TagName>-<Hash>.zip
- 	*	must rename this zip file to the accurate theme folder
- 	*/
+	/**
+	 *	Github delivers zip files as <Username>-<TagName>-<Hash>.zip
+ 	 *	must rename this zip file to the accurate theme folder
+ 	 * 
+ 	 * @since 1.0
+ 	 * @param string
+	 * @return string 
+ 	 */
 	public function gtu_upgrader_source_selection_filter( $source, $remote_source=NULL, $upgrader=NULL ) {
-		
 		if( isset( $source ) )
-			for ($i = 0; $i < count($this->config['theme']); $i++) {
+			for ( $i = 0; $i < count($this->config['theme'] ); $i++ ) {
 				if( strpos( $source, $this->config['theme'][$i]  ) )
 					$theme = $this->config['theme'][$i];
 			}
