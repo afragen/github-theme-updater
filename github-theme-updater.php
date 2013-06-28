@@ -17,20 +17,3 @@ if( is_admin() ) {
 	GitHub_Theme_Updater::instance();
 }	
 
-
-//REMOVE BELOW WHEN SUBMITTING TO WP REPO
-//Load Github Plugin Updater code
-if ( is_admin() )
-	add_action( 'plugins_loaded', 'gtu_github_plugin_updater' );
-	
-function gtu_github_plugin_updater() {
-
-	if ( ! function_exists( 'github_plugin_updater_register' ) )
-		return false;
-
-	github_plugin_updater_register( array(
-		'owner'	=> 'afragen',
-		'repo'	=> 'github-theme-updater',
-		'slug'	=> 'github-theme-updater/github-theme-updater.php', // defaults to the repo value ('repo/repo.php')
-	) );
-}
