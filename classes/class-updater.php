@@ -12,6 +12,7 @@ class GitHub_Theme_Updater {
 	}
 
 	protected function __construct() {
+	 	add_filter( 'extra_theme_headers', array($this, 'gtu_add_headers') );
 		$this->gtu_get_github_themes();
 		if( !empty($_GET['action'] ) && ( $_GET['action'] == 'do-core-reinstall' || $_GET['action'] == 'do-core-upgrade') ); else {
 			add_filter( 'site_transient_update_themes', array( $this, 'gtu_transient_update_themes_filter') );
@@ -21,12 +22,22 @@ class GitHub_Theme_Updater {
 	}
 
 	/**
+	 * Add GitHub headers to wp_get_theme
+	 *
+	 * @since 1.0
+	 * @return array
+	 */
+	private function gtu_add_headers( $extra_headers ) {
+		$extra_headers = array( 'GitHub Theme URI' );
+		return $extra_headers;
+	}
+
+	/**
 	 * Reads in first 2K of every theme's style.css to get version info.
 	 * Populates variable array
 	 *
 	 * @since 1.0
 	 */
-	
 	private function gtu_get_github_themes() {
 		$themes = wp_get_themes();
 
