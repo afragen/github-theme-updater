@@ -4,7 +4,7 @@ class GitHub_Theme_Updater {
 
 	protected $config;
 	protected static $object = false;
-	
+
 	public static function instance() {
 		$class = __CLASS__;
 		if (self::$object === false) self::$object = new $class();
@@ -27,7 +27,7 @@ class GitHub_Theme_Updater {
 	 * @since 1.0
 	 * @return array
 	 */
-	private function gtu_add_headers( $extra_headers ) {
+	public function gtu_add_headers( $extra_headers ) {
 		$extra_headers = array( 'GitHub Theme URI' );
 		return $extra_headers;
 	}
@@ -42,16 +42,17 @@ class GitHub_Theme_Updater {
 		$themes = wp_get_themes();
 
 		foreach ( $themes as $theme ) {
-			$stylesheet = file_get_contents( trailingslashit( $theme->theme_root ) . trailingslashit( $theme->stylesheet ) . 'style.css', null, null, 0, 2*1024 );
-			preg_match( '#\s*Git[Hh]ub Theme URI\:\s*(.*)$#im', $stylesheet, $matches );
-			if ( ! empty( $matches ) ) {
-				$this->config['theme'][]											= $theme->stylesheet;
+			$serialized_theme = serialize($theme);
+			preg_match( '@s\:[0-9]+\:\"(GitHub Theme URI)\";s\:[0-9]+\:\"([\:a-z\/\.]+)@i', $serialized_theme, $matches );
+
+			if ( ! empty( $matches[2] ) ) {
+				$this->config['theme'][]								= $theme->stylesheet;
 				$this->config[ $theme->stylesheet ]['theme_key']        = $theme->stylesheet;
-				$this->config[ $theme->stylesheet ]['GitHub_Theme_URI'] = rtrim( $matches[1] );
-				$this->config[ $theme->stylesheet ]['GitHub_API_URI']   = 'https://api.github.com/repos' . parse_url( rtrim( $matches[1] ), PHP_URL_PATH );
+				$this->config[ $theme->stylesheet ]['GitHub_Theme_URI'] = $matches[2];
+				$this->config[ $theme->stylesheet ]['GitHub_API_URI']   = 'https://api.github.com/repos' . parse_url( $matches[2], PHP_URL_PATH );
 				$this->config[ $theme->stylesheet ]['theme-data']       = wp_get_theme( $theme->stylesheet );				
 			}
-		} 
+		}
 	}
 
 	/**
