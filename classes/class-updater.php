@@ -42,8 +42,10 @@ class GitHub_Theme_Updater {
 		$themes = wp_get_themes();
 
 		foreach ( $themes as $theme ) {
+			//regex for standard URI, only special character '-'
+			$github_header_regex = '@s\:[0-9]+\:\"(GitHub Theme URI)\";s\:[0-9]+\:\"([\:a-z\/\.-]+)@i';
 			$serialized_theme = serialize($theme);
-			preg_match( '@s\:[0-9]+\:\"(GitHub Theme URI)\";s\:[0-9]+\:\"([\:a-z\/\.]+)@i', $serialized_theme, $matches );
+			preg_match( $github_header_regex, $serialized_theme, $matches );
 
 			if ( ! empty( $matches[2] ) ) {
 				$this->config['theme'][]								= $theme->stylesheet;
