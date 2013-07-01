@@ -1,5 +1,5 @@
 === GitHub Theme Updater ===
-Contributors: afragen
+Contributors: afragen, scarstens
 Tags: theme, update, github
 Requires at least: 3.4
 Tested up to: 3.5.2
@@ -41,6 +41,8 @@ There must be a `GitHub Theme URI` declaration in the `style.css` file and you m
     Version: 0.1
     */
 
+The only extra character allowed in a URI is `-`. Let me know if there is a need for others.
+
 This plugin was originally based upon <a href="https://github.com/WordPress-Phoenix/whitelabel-framework/blob/master/inc/updater-plugin.php">Whitelabel Framework's updater-plugin.php</a>, which was based upon https://github.com/UCF/Theme-Updater.
 
 == Issues ==
@@ -51,6 +53,8 @@ Please log issues either here or preferably on the GitHub at https://github.com/
 
 = 1.0 =
 * initial commit to WordPress repo
+* serialized WP_Theme object to search for added GitHub header, lots of help from Seth. No more `file_get_contents`
+
 
 = 0.2 =
 * code cleanup

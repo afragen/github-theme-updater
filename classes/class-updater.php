@@ -43,7 +43,7 @@ class GitHub_Theme_Updater {
 
 		foreach ( $themes as $theme ) {
 			//regex for standard URI, only special character '-'
-			$github_header_regex = '@s\:[0-9]+\:\"(GitHub Theme URI)\";s\:[0-9]+\:\"([\:a-z\/\.-]+)@i';
+			$github_header_regex = '@s\:[0-9]+\:\"(GitHub Theme URI)\";s\:[0-9]+\:\"([\:a-z0-9\/\.-]+)@i';
 			$serialized_theme = serialize($theme);
 			preg_match( $github_header_regex, $serialized_theme, $matches );
 
