@@ -12,7 +12,7 @@ class GitHub_Theme_Updater {
 	}
 
 	protected function __construct() {
-	 	add_filter( 'extra_theme_headers', array($this, 'gtu_add_headers') );
+		add_filter( 'extra_theme_headers', array($this, 'gtu_add_headers') );
 		$this->gtu_get_github_themes();
 		if( !empty($_GET['action'] ) && ( $_GET['action'] == 'do-core-reinstall' || $_GET['action'] == 'do-core-upgrade') ); else {
 			add_filter( 'site_transient_update_themes', array( $this, 'gtu_transient_update_themes_filter') );
@@ -117,7 +117,7 @@ class GitHub_Theme_Updater {
 			// check and generate download link
 			$newest_tag = end( array_values( $tags ) );
 			$download_link = trailingslashit( $theme_data['GitHub_Theme_URI'] ) . trailingslashit( 'archive' ) . $newest_tag . '.zip';
-			
+
 			// setup update array to append version info
 			$update = array();
 			$update['new_version']     = $newest_tag;
@@ -138,12 +138,12 @@ class GitHub_Theme_Updater {
 
 	/**
 	 *	Github delivers zip files as <Username>-<TagName>-<Hash>.zip
- 	 *	must rename this zip file to the accurate theme folder
- 	 * 
- 	 * @since 1.0
- 	 * @param string
+	 *	must rename this zip file to the accurate theme folder
+	 * 
+	 * @since 1.0
+	 * @param string
 	 * @return string 
- 	 */
+	 */
 	public function gtu_upgrader_source_selection_filter( $source, $remote_source=NULL, $upgrader=NULL ) {
 		if( isset( $source ) )
 			for ( $i = 0; $i < count($this->config['theme'] ); $i++ ) {

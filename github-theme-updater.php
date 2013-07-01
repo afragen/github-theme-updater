@@ -1,4 +1,5 @@
 <?php
+
 /*
 Plugin Name: GitHub Theme Updater
 Plugin URI: https://github.com/afragen/github-theme-updater/
@@ -13,5 +14,5 @@ License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 if( is_admin() ) {
 	require_once( 'classes/class-updater.php' );
 	GitHub_Theme_Updater::instance();
-}	
+}
 
