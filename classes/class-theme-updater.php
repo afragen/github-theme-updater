@@ -19,6 +19,8 @@ class GitHub_Theme_Updater {
 		}
 		add_filter( 'upgrader_source_selection', array( $this, 'gtu_upgrader_source_selection_filter' ), 10, 3 );
 		add_action( 'http_request_args', array( $this, 'gtu_no_ssl_http_request_args' ), 10, 2 );
+		
+		//var_dump($this->config);
 	}
 
 	/**
@@ -101,7 +103,7 @@ class GitHub_Theme_Updater {
 	 * @param array $data
 	 * @return array|object
 	 */
-	public function gtu_transient_update_themes_filter($data){
+	public function gtu_transient_update_themes_filter( $data ){
 		foreach ( $this->config as $theme => $theme_data ) {
 			$url = trailingslashit( $theme_data['GitHub_API_URI'] ) . 'tags';
 			$response = $this->get_remote_info( $url );
@@ -174,3 +176,5 @@ class GitHub_Theme_Updater {
 	}
 
 }
+
+GitHub_Theme_Updater::instance();

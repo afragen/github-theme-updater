@@ -1,0 +1,1 @@
+This plugin has been rolled into the afragen/github-updater repository. This repository is no longer actively updated.

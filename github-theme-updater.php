@@ -12,7 +12,7 @@ License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
 //Load base class and Launch
 if( is_admin() ) {
-	require_once( 'classes/class-updater.php' );
-	GitHub_Theme_Updater::instance();
-}
+	require_once( 'classes/class-theme-updater.php' ); //
+}	
+
 
